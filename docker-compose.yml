@@ -1,0 +1,17 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sp_sql_server_container
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SeriesPage123  
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"  
+    volumes:
+      - sp_sql_data:/var/opt/mssql  
+
+volumes:
+  sp_sql_data:
+    driver: local
