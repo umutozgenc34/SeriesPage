@@ -10,4 +10,13 @@
     <ProjectReference Include="..\SeriesPage.Repository\SeriesPage.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Summaries\Concretes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+  </ItemGroup>
+
 </Project>
