@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Repository.Context;
 using SeriesPage.Repository.Summaries.Abstracts;
 using SeriesPage.Repository.Summaries.Concretes;
+using SeriesPage.Repository.UnitOfWorks.Abstracts;
+using SeriesPage.Repository.UnitOfWorks.Concretes;
 
 namespace SeriesPage.Repository.Extensions;
 
@@ -13,6 +15,9 @@ public static class RepositoryExtensions
     {
         services.AddScoped<ISummaryRepository, SummaryRepository>();
 
+
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<AppDbContext>(opt =>
         {
             opt.UseSqlServer(configuration.GetConnectionString("SqlServer"));

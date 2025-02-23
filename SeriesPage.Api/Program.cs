@@ -1,8 +1,7 @@
-using Microsoft.EntityFrameworkCore;
-using SeriesPage.Repository.Context;
 using SeriesPage.Repository.Extensions;
 using SeriesPage.Service;
 using SeriesPage.Service.Extensions;
+using Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
