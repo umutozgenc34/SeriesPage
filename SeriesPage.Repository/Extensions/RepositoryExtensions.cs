@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SeriesPage.Repository.Casts.Abstracts;
+using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
 using SeriesPage.Repository.Summaries.Abstracts;
 using SeriesPage.Repository.Summaries.Concretes;
@@ -14,7 +16,7 @@ public static class RepositoryExtensions
     public static IServiceCollection AddRepositoryExtension(this IServiceCollection services ,IConfiguration configuration)
     {
         services.AddScoped<ISummaryRepository, SummaryRepository>();
-
+        services.AddScoped<ICastRepository, CastRepository>();
 
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();

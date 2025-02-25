@@ -1,6 +1,7 @@
 using SeriesPage.Repository.Extensions;
 using SeriesPage.Service;
 using SeriesPage.Service.Extensions;
+using Shared.Extensions;
 using Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddRepositoryExtension(builder.Configuration).AddServiceExtension(typeof(ServiceAssembly));
+builder.Services.AddRepositoryExtension(builder.Configuration)
+    .AddServiceExtension(typeof(ServiceAssembly))
+    .AddSharedExtension(builder.Configuration); 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

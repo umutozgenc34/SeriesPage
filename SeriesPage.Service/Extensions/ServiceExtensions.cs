@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using SeriesPage.Model.Summaries.Entities;
+using SeriesPage.Service.Casts.Abstracts;
+using SeriesPage.Service.Casts.Concretes;
 using SeriesPage.Service.Summaries.Abstracts;
 using SeriesPage.Service.Summaries.Concretes;
 using System.Reflection;
@@ -17,6 +18,7 @@ public static class ServiceExtensions
         services.AddValidatorsFromAssemblyContaining(assembly);
 
         services.AddScoped<ISummaryService, SummaryService>();
+        services.AddScoped<ICastService, CastService>();
             
 
         return services;
