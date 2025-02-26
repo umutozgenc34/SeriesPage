@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Repository.Casts.Abstracts;
 using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
+using SeriesPage.Repository.Episodes.Abstracts;
+using SeriesPage.Repository.Episodes.Concretes;
 using SeriesPage.Repository.Scenes.Abstracts;
 using SeriesPage.Repository.Scenes.Concretes;
 using SeriesPage.Repository.Seasons.Abstracts;
@@ -23,7 +25,7 @@ public static class RepositoryExtensions
         services.AddScoped<ICastRepository, CastRepository>();
         services.AddScoped<ISceneRepository, SceneRepository>();
         services.AddScoped<ISeasonRepository, SeasonRepository>();
-
+        services.AddScoped<IEpisodeRepository, EpisodeRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<AppDbContext>(opt =>

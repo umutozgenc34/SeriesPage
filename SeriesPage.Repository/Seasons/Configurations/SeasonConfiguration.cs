@@ -14,6 +14,11 @@ public class SeasonConfiguration : IEntityTypeConfiguration<Season>
 
         builder.Property(x => x.SeasonNumber)
             .IsRequired();
+
+        builder.HasMany(x=> x.Episodes)
+            .WithOne(x=> x.Season)
+            .HasForeignKey(x=> x.SeasonId)
+            .OnDelete(DeleteBehavior.Cascade);
             
     }
 }

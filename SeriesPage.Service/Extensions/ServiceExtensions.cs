@@ -1,8 +1,11 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using SeriesPage.Repository.Episodes.Abstracts;
 using SeriesPage.Service.Casts.Abstracts;
 using SeriesPage.Service.Casts.Concretes;
+using SeriesPage.Service.Episodes.Abstracts;
+using SeriesPage.Service.Episodes.Concretes;
 using SeriesPage.Service.Scenes.Abstracts;
 using SeriesPage.Service.Scenes.Concretes;
 using SeriesPage.Service.Seasons.Abstracts;
@@ -25,6 +28,7 @@ public static class ServiceExtensions
         services.AddScoped<ICastService, CastService>();
         services.AddScoped<ISceneService, SceneService>();
         services.AddScoped<ISeasonService, SeasonService>();
+        services.AddScoped<IEpisodeService,EpisodeService>();
             
 
         return services;
