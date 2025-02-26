@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SeriesPage.Model.Casts.Entities;
 using SeriesPage.Model.Scenes.Entities;
+using SeriesPage.Model.Seasons.Entities;
 using SeriesPage.Model.Summaries.Entities;
 using System.Reflection;
 
@@ -11,6 +12,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Summary> Summaries { get; set; }
     public DbSet<Cast> Casts { get; set; }
     public DbSet<Scene> Scenes { get; set; }
+    public DbSet<Season> Seasons { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
