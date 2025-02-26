@@ -3,6 +3,8 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Service.Casts.Abstracts;
 using SeriesPage.Service.Casts.Concretes;
+using SeriesPage.Service.Scenes.Abstracts;
+using SeriesPage.Service.Scenes.Concretes;
 using SeriesPage.Service.Summaries.Abstracts;
 using SeriesPage.Service.Summaries.Concretes;
 using System.Reflection;
@@ -19,6 +21,7 @@ public static class ServiceExtensions
 
         services.AddScoped<ISummaryService, SummaryService>();
         services.AddScoped<ICastService, CastService>();
+        services.AddScoped<ISceneService, SceneService>();
             
 
         return services;

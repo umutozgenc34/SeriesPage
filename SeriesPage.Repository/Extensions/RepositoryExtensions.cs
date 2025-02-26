@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Repository.Casts.Abstracts;
 using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
+using SeriesPage.Repository.Scenes.Abstracts;
+using SeriesPage.Repository.Scenes.Concretes;
 using SeriesPage.Repository.Summaries.Abstracts;
 using SeriesPage.Repository.Summaries.Concretes;
 using SeriesPage.Repository.UnitOfWorks.Abstracts;
@@ -17,6 +19,7 @@ public static class RepositoryExtensions
     {
         services.AddScoped<ISummaryRepository, SummaryRepository>();
         services.AddScoped<ICastRepository, CastRepository>();
+        services.AddScoped<ISceneRepository, SceneRepository>();
 
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
