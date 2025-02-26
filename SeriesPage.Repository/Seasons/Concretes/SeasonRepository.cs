@@ -11,5 +11,15 @@ public class SeasonRepository(AppDbContext context) : BaseRepository<AppDbContex
     public async Task<Season?> GetBySeasonNumberAsync(int seasonNumber) => 
         await context.Seasons.FirstOrDefaultAsync(x => x.SeasonNumber == seasonNumber);
 
+    public async Task<Season?> GetWithEpisodesBySeasonNumberAsync(int seasonNumber) =>
+        await context.Seasons
+            .Include(s => s.Episodes) 
+            .FirstOrDefaultAsync(x => x.SeasonNumber == seasonNumber);
+    
+    public async Task<List<Season>> GetAllWithEpisodesAsync() =>
+        await context.Seasons
+            .Include(s => s.Episodes) 
+            .ToListAsync();
+
 }
 

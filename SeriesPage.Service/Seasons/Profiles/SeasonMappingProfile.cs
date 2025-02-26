@@ -12,5 +12,6 @@ public class SeasonMappingProfile : Profile
         CreateMap<CreateSeasonRequest, Season>();
         CreateMap<UpdateSeasonRequest, Season>();
         CreateMap<Season, SeasonDto>().ReverseMap();
+        CreateMap<Season, SeasonWithEpisodesDto>();
     }
 }

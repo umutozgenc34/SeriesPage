@@ -10,4 +10,7 @@ public interface ISeasonService
     Task<ServiceResult<SeasonDto>> AddAsync(CreateSeasonRequest request);
     Task<ServiceResult> DeleteAsync(int id);
     Task<ServiceResult> UpdateAsync(UpdateSeasonRequest request);
+    Task<ServiceResult<List<SeasonWithEpisodesDto>>> GetAllWithEpisodesAsync();
+    Task<ServiceResult<SeasonWithEpisodesDto>> GetWithEpisodesBySeasonNumberAsync(int seasonNumber);
+
 }

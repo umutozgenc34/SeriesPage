@@ -20,4 +20,12 @@ public class SeasonController(ISeasonService seasonService) : CustomBaseControll
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteSeason([FromRoute] int id) => CreateActionResult(await seasonService.DeleteAsync(id));
+
+    [HttpGet("with-episodes")]
+    public async Task<IActionResult> GetAllSeasonsWithEpisodes() =>
+           CreateActionResult(await seasonService.GetAllWithEpisodesAsync());
+
+    [HttpGet("with-episodes/{seasonNumber:int}")]
+    public async Task<IActionResult> GetSeasonWithEpisodesBySeasonNumber([FromRoute] int seasonNumber) =>
+        CreateActionResult(await seasonService.GetWithEpisodesBySeasonNumberAsync(seasonNumber));
 }

@@ -73,5 +73,22 @@ public class SeasonService(ISeasonRepository seasonRepository,IUnitOfWork unitOf
 
         return ServiceResult.Success("Season updated.", HttpStatusCode.NoContent);
     }
+
+    public async Task<ServiceResult<List<SeasonWithEpisodesDto>>> GetAllWithEpisodesAsync()
+    {
+        var seasons = await seasonRepository.GetAllWithEpisodesAsync();
+        var seasonsAsDto = mapper.Map<List<SeasonWithEpisodesDto>>(seasons);
+
+        return ServiceResult<List<SeasonWithEpisodesDto>>.Success(seasonsAsDto, "Success");
+    }
+    public async Task<ServiceResult<SeasonWithEpisodesDto>> GetWithEpisodesBySeasonNumberAsync(int seasonNumber)
+    {
+        var season = await seasonRepository.GetWithEpisodesBySeasonNumberAsync(seasonNumber);
+        if (season is null)
+            throw new NotFoundException("Season not found");
+
+        var seasonAsDto = mapper.Map<SeasonWithEpisodesDto>(season);
+        return ServiceResult<SeasonWithEpisodesDto>.Success(seasonAsDto, "Success");
+    }
 }
 
