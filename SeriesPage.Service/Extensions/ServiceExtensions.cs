@@ -14,6 +14,8 @@ using SeriesPage.Service.Seasons.Abstracts;
 using SeriesPage.Service.Seasons.Concretes;
 using SeriesPage.Service.Summaries.Abstracts;
 using SeriesPage.Service.Summaries.Concretes;
+using SeriesPage.Service.UserReviews.Abstracts;
+using SeriesPage.Service.UserReviews.Concretes;
 using System.Reflection;
 
 namespace SeriesPage.Service.Extensions;
@@ -32,6 +34,7 @@ public static class ServiceExtensions
         services.AddScoped<ISeasonService, SeasonService>();
         services.AddScoped<IEpisodeService,EpisodeService>();
         services.AddScoped<IPhotoService, PhotoService>();
+        services.AddScoped<IReviewsService, ReviewsService>();
             
 
         return services;

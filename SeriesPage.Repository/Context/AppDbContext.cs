@@ -5,6 +5,7 @@ using SeriesPage.Model.Photos.Entities;
 using SeriesPage.Model.Scenes.Entities;
 using SeriesPage.Model.Seasons.Entities;
 using SeriesPage.Model.Summaries.Entities;
+using SeriesPage.Model.UserReviews.Entities;
 using System.Reflection;
 
 namespace SeriesPage.Repository.Context;
@@ -17,6 +18,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Season> Seasons { get; set; }
     public DbSet<Episode> Episodes { get; set; }
     public DbSet<Photo> Photos { get; set; }
+    public DbSet<Reviews> UserReviews { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

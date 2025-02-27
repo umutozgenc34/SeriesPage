@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SeriesPage.Model.UserReviews.Entities;
 using SeriesPage.Repository.Casts.Abstracts;
 using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
@@ -16,6 +17,8 @@ using SeriesPage.Repository.Summaries.Abstracts;
 using SeriesPage.Repository.Summaries.Concretes;
 using SeriesPage.Repository.UnitOfWorks.Abstracts;
 using SeriesPage.Repository.UnitOfWorks.Concretes;
+using SeriesPage.Repository.UserReviews.Abstracts;
+using SeriesPage.Repository.UserReviews.Concretes;
 
 namespace SeriesPage.Repository.Extensions;
 
@@ -29,6 +32,7 @@ public static class RepositoryExtensions
         services.AddScoped<ISeasonRepository, SeasonRepository>();
         services.AddScoped<IEpisodeRepository, EpisodeRepository>();
         services.AddScoped<IPhotoRepository,PhotoRepository>();
+        services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<AppDbContext>(opt =>
