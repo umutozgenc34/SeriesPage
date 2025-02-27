@@ -6,6 +6,8 @@ using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
 using SeriesPage.Repository.Episodes.Abstracts;
 using SeriesPage.Repository.Episodes.Concretes;
+using SeriesPage.Repository.Photos.Abstracts;
+using SeriesPage.Repository.Photos.Concretes;
 using SeriesPage.Repository.Scenes.Abstracts;
 using SeriesPage.Repository.Scenes.Concretes;
 using SeriesPage.Repository.Seasons.Abstracts;
@@ -26,6 +28,7 @@ public static class RepositoryExtensions
         services.AddScoped<ISceneRepository, SceneRepository>();
         services.AddScoped<ISeasonRepository, SeasonRepository>();
         services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+        services.AddScoped<IPhotoRepository,PhotoRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<AppDbContext>(opt =>

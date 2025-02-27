@@ -4,7 +4,7 @@ using SeriesPage.Service.Seasons.Abstracts;
 
 namespace SeriesPage.Api.Controllers;
 
-public class SeasonController(ISeasonService seasonService) : CustomBaseController
+public class SeasonsController(ISeasonService seasonService) : CustomBaseController
 {
     [HttpGet]
     public async Task<IActionResult> GetAllSeasons() => CreateActionResult(await seasonService.GetAllAsync());

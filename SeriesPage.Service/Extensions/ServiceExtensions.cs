@@ -6,6 +6,8 @@ using SeriesPage.Service.Casts.Abstracts;
 using SeriesPage.Service.Casts.Concretes;
 using SeriesPage.Service.Episodes.Abstracts;
 using SeriesPage.Service.Episodes.Concretes;
+using SeriesPage.Service.Photos.Abstracts;
+using SeriesPage.Service.Photos.Concretes;
 using SeriesPage.Service.Scenes.Abstracts;
 using SeriesPage.Service.Scenes.Concretes;
 using SeriesPage.Service.Seasons.Abstracts;
@@ -29,6 +31,7 @@ public static class ServiceExtensions
         services.AddScoped<ISceneService, SceneService>();
         services.AddScoped<ISeasonService, SeasonService>();
         services.AddScoped<IEpisodeService,EpisodeService>();
+        services.AddScoped<IPhotoService, PhotoService>();
             
 
         return services;
