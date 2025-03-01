@@ -31,10 +31,17 @@ public static class RepositoryExtensions
         services.AddScoped<ISceneRepository, SceneRepository>();
         services.AddScoped<ISeasonRepository, SeasonRepository>();
         services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+        services.Decorate<IEpisodeRepository,EpisodeRepositoryWithCache>();
         services.AddScoped<IPhotoRepository,PhotoRepository>();
         services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddStackExchangeRedisCache(opt =>
+        {
+            opt.Configuration = configuration.GetConnectionString("Redis");
+        });
+
         services.AddDbContext<AppDbContext>(opt =>
         {
             opt.UseSqlServer(configuration.GetConnectionString("SqlServer"));
