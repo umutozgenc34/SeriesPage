@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Model.UserReviews.Entities;
+using SeriesPage.Repository.Awards.Abstracts;
+using SeriesPage.Repository.Awards.Concretes;
 using SeriesPage.Repository.Casts.Abstracts;
 using SeriesPage.Repository.Casts.Concretes;
 using SeriesPage.Repository.Context;
@@ -34,6 +36,7 @@ public static class RepositoryExtensions
         services.Decorate<IEpisodeRepository,EpisodeRepositoryWithCache>();
         services.AddScoped<IPhotoRepository,PhotoRepository>();
         services.AddScoped<IReviewsRepository, ReviewsRepository>();
+        services.AddScoped<IAwardRepository,AwardRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

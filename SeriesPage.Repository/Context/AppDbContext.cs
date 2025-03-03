@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SeriesPage.Model.Awards.Entities;
 using SeriesPage.Model.Casts.Entities;
 using SeriesPage.Model.Episodes.Entites;
 using SeriesPage.Model.Photos.Entities;
@@ -19,6 +20,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Episode> Episodes { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<Reviews> UserReviews { get; set; }
+    public DbSet<Award> Awards { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

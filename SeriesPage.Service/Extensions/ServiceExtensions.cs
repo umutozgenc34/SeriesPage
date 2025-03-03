@@ -2,6 +2,8 @@
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using SeriesPage.Repository.Episodes.Abstracts;
+using SeriesPage.Service.Awards.Abstracts;
+using SeriesPage.Service.Awards.Concretes;
 using SeriesPage.Service.Casts.Abstracts;
 using SeriesPage.Service.Casts.Concretes;
 using SeriesPage.Service.Episodes.Abstracts;
@@ -35,6 +37,7 @@ public static class ServiceExtensions
         services.AddScoped<IEpisodeService,EpisodeService>();
         services.AddScoped<IPhotoService, PhotoService>();
         services.AddScoped<IReviewsService, ReviewsService>();
+        services.AddScoped<IAwardService,AwardService>();
             
 
         return services;
