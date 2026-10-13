@@ -19,7 +19,7 @@ public class SummaryService(ISummaryRepository summaryRepository,IUnitOfWork uni
         await unitOfWork.SaveChangesAsync();
         var summaryAsDto = mapper.Map<SummaryDto>(summary);
 
-        return ServiceResult<SummaryDto>.SuccessAsCreated(summaryAsDto,"Summary created." ,$"api/summary/{summaryAsDto.Id}");
+        return ServiceResult<SummaryDto>.SuccessAsCreated(summaryAsDto,"Summary created." ,$"api/Summary/{summaryAsDto.Id}");
     }
 
     public async Task<ServiceResult> DeleteAsync(int id)

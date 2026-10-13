@@ -1,26 +1,21 @@
-﻿using Shared.Exceptions;
-using Shared.Response;
-using System.Net.Http;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Shared.Exceptions;
+using Shared.Response;
 
 namespace Shared.Middlewares;
 
-public class ExceptionHandlingMiddleware
+public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-
-    public ExceptionHandlingMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
+    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
         {
-            await _next(httpContext);
+            await next(httpContext);
         }
         catch (Exception ex)
         {
@@ -30,23 +25,26 @@ public class ExceptionHandlingMiddleware
 
     private Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
+        var status = exception switch
+        {
+            NotFoundException => HttpStatusCode.NotFound,
+            BusinessException => HttpStatusCode.BadRequest,
+            _ => HttpStatusCode.InternalServerError
+        };
+
+        var message = exception.Message;
+
+        if (status == HttpStatusCode.InternalServerError)
+        {
+            logger.LogError(exception, "Unhandled exception while processing {Method} {Path}", httpContext.Request.Method, httpContext.Request.Path);
+            message = "An unexpected error occurred.";
+        }
 
         httpContext.Response.ContentType = "application/json";
-        httpContext.Response.StatusCode = exception switch
-        {
-            NotFoundException => (int)HttpStatusCode.NotFound,
-            BusinessException => (int)HttpStatusCode.BadRequest,
-            _ => (int)HttpStatusCode.InternalServerError
-        };
+        httpContext.Response.StatusCode = (int)status;
 
-        var result = new ServiceResult
-        {
-            Succes = false,
-            Message = exception.Message,
-            Status = (HttpStatusCode)httpContext.Response.StatusCode
-        };
+        var result = ServiceResult.Fail(message, status);
 
-        var jsonResponse = JsonSerializer.Serialize(result);
-        return httpContext.Response.WriteAsync(jsonResponse);
+        return httpContext.Response.WriteAsync(JsonSerializer.Serialize(result, JsonOptions));
     }
 }

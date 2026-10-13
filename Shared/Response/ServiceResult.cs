@@ -9,7 +9,7 @@ public class ServiceResult
     [JsonIgnore]
     public HttpStatusCode Status { get; set; }
     [JsonIgnore]
-    public bool Succes { get; set; }
+    public bool IsSuccess { get; set; }
 
     public static ServiceResult Success(string message, HttpStatusCode status = HttpStatusCode.OK)
     {
@@ -17,28 +17,37 @@ public class ServiceResult
         {
             Message = message,
             Status = status,
-            Succes= true
+            IsSuccess = true
         };
     }
 
+    public static ServiceResult Fail(string message, HttpStatusCode status)
+    {
+        return new ServiceResult()
+        {
+            Message = message,
+            Status = status,
+            IsSuccess = false
+        };
+    }
 }
 
 public class ServiceResult<T> : ServiceResult
 {
     public T? Data { get; set; }
     [JsonIgnore] public string? UrlAsCreated { get; set; }
-    public static ServiceResult<T> Success(T data,string message ,HttpStatusCode status = HttpStatusCode.OK)
+    public static ServiceResult<T> Success(T data, string message, HttpStatusCode status = HttpStatusCode.OK)
     {
         return new ServiceResult<T>()
         {
             Data = data,
             Message = message,
             Status = status,
-            Succes = true
+            IsSuccess = true
         };
     }
 
-    public static ServiceResult<T> SuccessAsCreated(T data, string message,string urlAsCreated)
+    public static ServiceResult<T> SuccessAsCreated(T data, string message, string urlAsCreated)
     {
         return new ServiceResult<T>()
         {
@@ -46,7 +55,7 @@ public class ServiceResult<T> : ServiceResult
             Message = message,
             Status = HttpStatusCode.Created,
             UrlAsCreated = urlAsCreated,
-            Succes = true
+            IsSuccess = true
         };
     }
 }

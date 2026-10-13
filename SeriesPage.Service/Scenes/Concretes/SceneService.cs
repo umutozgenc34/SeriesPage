@@ -27,7 +27,7 @@ public class SceneService(ISceneRepository sceneRepository, IUnitOfWork unitOfWo
         await unitOfWork.SaveChangesAsync();
         var sceneAsDto = mapper.Map<SceneDto>(scene);
 
-        return ServiceResult<SceneDto>.SuccessAsCreated(sceneAsDto, "Scene created.", $"api/scene/{sceneAsDto.Id}");
+        return ServiceResult<SceneDto>.SuccessAsCreated(sceneAsDto, "Scene created.", $"api/Scenes/{sceneAsDto.Id}");
     }
 
     public async Task<ServiceResult> DeleteAsync(int id)

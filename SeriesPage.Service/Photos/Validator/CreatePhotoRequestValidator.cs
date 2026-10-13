@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using SeriesPage.Model.Photos.Dtos;
+using SeriesPage.Service.Common;
 
 namespace SeriesPage.Service.Photos.Validator;
 
@@ -8,10 +9,9 @@ public class CreatePhotoRequestValidator : AbstractValidator<CreatePhotoRequest>
     public CreatePhotoRequestValidator()
     {
         RuleFor(x => x.ImageUrl)
-            .Must(file => file == null ||
-                new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" }
-                .Contains(Path.GetExtension(file.FileName).ToLower()))
+            .NotNull()
+            .WithMessage("Image file is required.")
+            .Must(AllowedFileTypes.IsImage)
             .WithMessage("ImageUrl must be a valid image file (jpg, jpeg, png, gif, webp).");
-
     }
 }

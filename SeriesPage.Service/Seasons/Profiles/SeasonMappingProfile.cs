@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using SeriesPage.Model.Casts.Dtos;
 using SeriesPage.Model.Seasons.Dtos;
 using SeriesPage.Model.Seasons.Entities;
 
@@ -11,7 +10,7 @@ public class SeasonMappingProfile : Profile
     {
         CreateMap<CreateSeasonRequest, Season>();
         CreateMap<UpdateSeasonRequest, Season>();
-        CreateMap<Season, SeasonDto>().ReverseMap();
+        CreateMap<Season, SeasonDto>();
         CreateMap<Season, SeasonWithEpisodesDto>();
     }
 }

@@ -19,7 +19,7 @@ public class ReviewsService(IReviewsRepository reviewsRepository, IUnitOfWork un
         await unitOfWork.SaveChangesAsync();
         var reviewAsDto = mapper.Map<ReviewsDto>(review);
 
-        return ServiceResult<ReviewsDto>.SuccessAsCreated(reviewAsDto, "Review created.", $"api/reviews/{reviewAsDto.Id}");
+        return ServiceResult<ReviewsDto>.SuccessAsCreated(reviewAsDto, "Review created.", $"api/Reviews/{reviewAsDto.Id}");
     }
 
     public async Task<ServiceResult> DeleteAsync(int id)

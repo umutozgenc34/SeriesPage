@@ -1,7 +1,8 @@
-﻿using CloudinaryDotNet.Actions;
-using CloudinaryDotNet;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Shared.Exceptions;
 using Shared.Services.Cloudinaryy.Abstracts;
 using Shared.Services.Cloudinaryy.Settings;
 
@@ -10,51 +11,53 @@ namespace Shared.Services.Cloudinaryy.Concretes;
 public sealed class CloudinaryService : ICloudinaryService
 {
     private readonly Cloudinary _cloudinary;
-    private readonly Account _account;
-    private readonly CloudinarySettings _cloudinarySettings;
+
     public CloudinaryService(IOptions<CloudinarySettings> cloudOptions)
     {
-        _cloudinarySettings = cloudOptions.Value;
-        _account = new Account(_cloudinarySettings.CloudName, _cloudinarySettings.ApiKey, _cloudinarySettings.ApiSecret);
-        _cloudinary = new CloudinaryDotNet.Cloudinary(_account);
+        var settings = cloudOptions.Value;
+        var account = new Account(settings.CloudName, settings.ApiKey, settings.ApiSecret);
+        _cloudinary = new Cloudinary(account) { Api = { Secure = true } };
     }
+
     public async Task<string> UploadImage(IFormFile formFile, string imageDirectory)
     {
-        var imageUploadResult = new ImageUploadResult();
-        if (formFile.Length > 0)
+        if (formFile.Length == 0)
+            return string.Empty;
+
+        await using var stream = formFile.OpenReadStream();
+        var uploadParams = new ImageUploadParams()
         {
-            using var stream = formFile.OpenReadStream();
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(formFile.Name, stream),
-                Folder = imageDirectory
-            };
-            imageUploadResult = await _cloudinary.UploadAsync(uploadParams);
-            string url = _cloudinary.Api.UrlImgUp.BuildUrl(imageUploadResult.PublicId);
-            return url;
-        }
-        return string.Empty;
+            File = new FileDescription(formFile.FileName, stream),
+            Folder = imageDirectory
+        };
+
+        var result = await _cloudinary.UploadAsync(uploadParams);
+        EnsureSuccess(result);
+
+        return result.SecureUrl.ToString();
     }
 
     public async Task<string> UploadVideo(IFormFile formFile, string videoDirectory)
     {
-        if (formFile.Length > 0)
+        if (formFile.Length == 0)
+            return string.Empty;
+
+        await using var stream = formFile.OpenReadStream();
+        var uploadParams = new VideoUploadParams()
         {
-            using var stream = formFile.OpenReadStream();
+            File = new FileDescription(formFile.FileName, stream),
+            Folder = videoDirectory
+        };
 
-            var uploadParams = new VideoUploadParams()
-            {
-                File = new FileDescription(formFile.FileName, stream),
-                Folder = videoDirectory
-            };
+        var result = await _cloudinary.UploadAsync(uploadParams);
+        EnsureSuccess(result);
 
-            var videoUploadResult = await _cloudinary.UploadAsync(uploadParams);
+        return result.SecureUrl.ToString();
+    }
 
-            string videoUrl = _cloudinary.Api.UrlVideoUp.BuildUrl(videoUploadResult.PublicId);
-
-            return videoUrl;
-        }
-
-        return string.Empty;
+    private static void EnsureSuccess(BaseResult result)
+    {
+        if (result.Error is not null)
+            throw new BusinessException($"File upload failed: {result.Error.Message}");
     }
 }

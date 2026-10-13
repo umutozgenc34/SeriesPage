@@ -27,7 +27,7 @@ public class EpisodeConfiguration : IEntityTypeConfiguration<Episode>
         builder.HasOne(x => x.Season)
             .WithMany(x => x.Episodes)
             .HasForeignKey(x => x.SeasonId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Navigation(x => x.Season).AutoInclude();
 

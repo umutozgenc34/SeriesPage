@@ -4,10 +4,10 @@ using SeriesPage.Service.Scenes.Abstracts;
 
 namespace SeriesPage.Api.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
 public class ScenesController(ISceneService sceneService) : CustomBaseController
 {
+    private const long MaxVideoUploadSize = 500L * 1024 * 1024;
+
     [HttpGet]
     public async Task<IActionResult> GetAllScenes() => CreateActionResult(await sceneService.GetAllAsync());
 
@@ -16,10 +16,14 @@ public class ScenesController(ISceneService sceneService) : CustomBaseController
 
     [HttpPost]
     [Consumes("multipart/form-data")]
+    [RequestSizeLimit(MaxVideoUploadSize)]
+    [RequestFormLimits(MultipartBodyLengthLimit = MaxVideoUploadSize)]
     public async Task<IActionResult> CreateScene([FromForm] CreateSceneRequest request) => CreateActionResult(await sceneService.AddAsync(request));
 
     [HttpPut]
     [Consumes("multipart/form-data")]
+    [RequestSizeLimit(MaxVideoUploadSize)]
+    [RequestFormLimits(MultipartBodyLengthLimit = MaxVideoUploadSize)]
     public async Task<IActionResult> UpdateScene([FromForm] UpdateSceneRequest request) => CreateActionResult(await sceneService.UpdateAsync(request));
 
     [HttpDelete("{id:int}")]

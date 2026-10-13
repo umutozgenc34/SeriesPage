@@ -7,11 +7,11 @@ public class UpdateSeasonRequestValidator : AbstractValidator<UpdateSeasonReques
 {
     public UpdateSeasonRequestValidator()
     {
-        RuleFor(x=> x.Id).NotEmpty().WithMessage("Id is required.");
+        RuleFor(x => x.Id)
+            .GreaterThan(0)
+            .WithMessage("Id is required.");
 
         RuleFor(x => x.SeasonNumber)
-            .NotEmpty()
-            .WithMessage("SeasonNumber is required.")
             .GreaterThan(0)
             .WithMessage("Season number must be greater than 0.");
     }

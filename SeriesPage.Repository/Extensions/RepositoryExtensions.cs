@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SeriesPage.Model.UserReviews.Entities;
 using SeriesPage.Repository.Awards.Abstracts;
 using SeriesPage.Repository.Awards.Concretes;
 using SeriesPage.Repository.Casts.Abstracts;

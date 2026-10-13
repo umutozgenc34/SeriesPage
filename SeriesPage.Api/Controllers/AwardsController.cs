@@ -4,7 +4,7 @@ using SeriesPage.Service.Awards.Abstracts;
 
 namespace SeriesPage.Api.Controllers;
 
-public class AwardController(IAwardService awardService) : CustomBaseController
+public class AwardsController(IAwardService awardService) : CustomBaseController
 {
     [HttpGet]
     public async Task<IActionResult> GetAllAwards() => CreateActionResult(await awardService.GetAllAsync());

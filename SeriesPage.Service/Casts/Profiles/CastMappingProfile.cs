@@ -8,8 +8,8 @@ public class CastMappingProfile : Profile
 {
     public CastMappingProfile()
     {
-        CreateMap<CreateCastRequest, Cast>();
-        CreateMap<UpdateCastRequest, Cast>();
-        CreateMap<Cast, CastDto>().ReverseMap();
+        CreateMap<CreateCastRequest, Cast>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+        CreateMap<UpdateCastRequest, Cast>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+        CreateMap<Cast, CastDto>();
     }
 }

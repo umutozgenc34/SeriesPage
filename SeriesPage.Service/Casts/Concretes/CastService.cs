@@ -27,7 +27,7 @@ public class CastService(ICastRepository castRepository, IUnitOfWork unitOfWork,
         await unitOfWork.SaveChangesAsync();
         var castAsDto = mapper.Map<CastDto>(cast);
 
-        return ServiceResult<CastDto>.SuccessAsCreated(castAsDto, "Cast created.", $"api/cast/{castAsDto.Id}");
+        return ServiceResult<CastDto>.SuccessAsCreated(castAsDto, "Cast created.", $"api/Casts/{castAsDto.Id}");
     }
 
 

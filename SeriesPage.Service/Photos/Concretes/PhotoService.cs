@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using SeriesPage.Model.Casts.Dtos;
 using SeriesPage.Model.Photos.Dtos;
 using SeriesPage.Model.Photos.Entities;
 using SeriesPage.Repository.Photos.Abstracts;
@@ -17,11 +16,7 @@ public class PhotoService(IPhotoRepository photoRepository,IUnitOfWork unitOfWor
     public async Task<ServiceResult<PhotoDto>> AddAsync(CreatePhotoRequest request)
     {
         var photo = mapper.Map<Photo>(request);
-        if (request.ImageUrl is not null)
-        {
-            var imageUrl = await cloudinaryService.UploadImage(request.ImageUrl, "photos_images");
-            photo.ImageUrl = imageUrl;
-        }
+        photo.ImageUrl = await cloudinaryService.UploadImage(request.ImageUrl, "photos_images");
 
         await photoRepository.AddAsync(photo);
         await unitOfWork.SaveChangesAsync();
@@ -30,7 +25,7 @@ public class PhotoService(IPhotoRepository photoRepository,IUnitOfWork unitOfWor
         return ServiceResult<PhotoDto>.SuccessAsCreated(photoAsDto, "Photo created.", $"api/Photos/{photoAsDto.Id}");
     }
 
-    public async Task<ServiceResult> DeleteAsnyc(int id)
+    public async Task<ServiceResult> DeleteAsync(int id)
     {
         var photo = await photoRepository.GetByIdAsync(id);
         if (photo is null)
@@ -47,7 +42,7 @@ public class PhotoService(IPhotoRepository photoRepository,IUnitOfWork unitOfWor
         var photos = await photoRepository.GetAllAsync();
         var photosAsDto = mapper.Map<List<PhotoDto>>(photos);
 
-        return ServiceResult<List<PhotoDto>>.Success(photosAsDto,"Sucess");
+        return ServiceResult<List<PhotoDto>>.Success(photosAsDto,"Success");
     }
 
     public async Task<ServiceResult<PhotoDto>> GetByIdAsync(int id)

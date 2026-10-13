@@ -15,9 +15,11 @@ public class PhotosController(IPhotoService photoService) : CustomBaseController
     [HttpPost]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> CreatePhoto([FromForm] CreatePhotoRequest request) => CreateActionResult(await photoService.AddAsync(request));
+
     [HttpPut]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UpdatePhoto([FromForm] UpdatePhotoRequest request) => CreateActionResult(await photoService.UpdateAsync(request));
+
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeletePhoto([FromRoute] int id) => CreateActionResult(await photoService.DeleteAsnyc(id));
+    public async Task<IActionResult> DeletePhoto([FromRoute] int id) => CreateActionResult(await photoService.DeleteAsync(id));
 }

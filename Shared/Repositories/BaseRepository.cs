@@ -4,13 +4,13 @@ using System.Linq.Expressions;
 namespace Shared.Repositories;
 
 public class BaseRepository<TDbContext, TEntity, TId>(TDbContext context) : IBaseRepository<TEntity, TId>
-    where TEntity : BaseEntity<TId>,new()
+    where TEntity : BaseEntity<TId>, new()
     where TDbContext : DbContext
 {
     protected TDbContext Context { get; } = context;
     public async Task AddAsync(TEntity entity) => await Context.Set<TEntity>().AddAsync(entity);
-    public  void Delete(TEntity entity) => Context.Set<TEntity>().Remove(entity);
-    public async Task<List<TEntity>> GetAllAsync() => await Context.Set<TEntity>().ToListAsync();
+    public void Delete(TEntity entity) => Context.Set<TEntity>().Remove(entity);
+    public async Task<List<TEntity>> GetAllAsync() => await Context.Set<TEntity>().AsNoTracking().ToListAsync();
     public async Task<TEntity?> GetByIdAsync(TId id) => await Context.Set<TEntity>().FindAsync(id);
     public void Update(TEntity entity) => Context.Set<TEntity>().Update(entity);
     public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>>? predicate = null)

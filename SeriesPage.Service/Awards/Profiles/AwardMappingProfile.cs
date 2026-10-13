@@ -10,6 +10,6 @@ public class AwardMappingProfile : Profile
     {
         CreateMap<CreateAwardRequest, Award>();
         CreateMap<UpdateAwardRequest, Award>();
-        CreateMap<AwardDto, Award>().ReverseMap();
+        CreateMap<Award, AwardDto>();
     }
 }

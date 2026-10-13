@@ -2,4 +2,4 @@
 
 namespace SeriesPage.Model.Episodes.Dtos;
 
-public sealed record UpdateEpisodeRequest(int Id,string Name, int EpisodeNumber, IFormFile VideoUrl, int SeasonId);
+public sealed record UpdateEpisodeRequest(int Id,string Name, int EpisodeNumber, IFormFile? VideoUrl, int SeasonId);

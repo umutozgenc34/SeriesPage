@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using SeriesPage.Repository.Episodes.Abstracts;
 using SeriesPage.Service.Awards.Abstracts;
 using SeriesPage.Service.Awards.Concretes;
 using SeriesPage.Service.Casts.Abstracts;

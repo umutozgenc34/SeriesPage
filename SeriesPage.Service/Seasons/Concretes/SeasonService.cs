@@ -23,7 +23,7 @@ public class SeasonService(ISeasonRepository seasonRepository,IUnitOfWork unitOf
         await unitOfWork.SaveChangesAsync();
         var seasonAsDto = mapper.Map<SeasonDto>(season);
 
-        return ServiceResult<SeasonDto>.SuccessAsCreated(seasonAsDto, "Season created.", $"api/season/{seasonAsDto.Id}");
+        return ServiceResult<SeasonDto>.SuccessAsCreated(seasonAsDto, "Season created.", $"api/Seasons/{seasonAsDto.Id}");
     }
 
     public async Task<ServiceResult> DeleteAsync(int id)

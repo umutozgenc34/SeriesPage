@@ -10,6 +10,6 @@ public class SummaryMappingProfile : Profile
     {
         CreateMap<CreateSummaryRequest, Summary>();
         CreateMap<UpdateSummaryRequest, Summary>();
-        CreateMap<Summary, SummaryDto>().ReverseMap();
+        CreateMap<Summary, SummaryDto>();
     }
 }

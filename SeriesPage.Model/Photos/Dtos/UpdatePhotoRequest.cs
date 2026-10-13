@@ -2,4 +2,4 @@
 
 namespace SeriesPage.Model.Photos.Dtos;
 
-public sealed record UpdatePhotoRequest(int Id,IFormFile ImageUrl);
+public sealed record UpdatePhotoRequest(int Id,IFormFile? ImageUrl);
