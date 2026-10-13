@@ -2,13 +2,6 @@
   padding-top: var(--space-6);
 }
 
-.episodes__title {
-  font-size: clamp(3.5rem, 12vw, 9rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  line-height: 0.85;
-}
-
 .episodes__filter {
   display: flex;
   flex-wrap: wrap;

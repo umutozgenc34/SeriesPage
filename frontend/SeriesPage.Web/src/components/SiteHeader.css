@@ -24,9 +24,8 @@
 
 .site-header__nav {
   display: flex;
-  gap: var(--space-4);
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 0 var(--space-4);
 }
 
 .site-header__link {

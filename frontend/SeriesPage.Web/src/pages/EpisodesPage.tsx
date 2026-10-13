@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { seriesApi } from '../api/series'
 import { EmptyState, LoadState } from '../components/LoadState'
+import { PageTitle } from '../components/PageTitle'
 import { pad, plural } from '../format'
 import { useApi } from '../hooks/useApi'
 import './EpisodesPage.css'
@@ -20,7 +21,7 @@ export function EpisodesPage() {
 
   return (
     <div className="page episodes">
-      <h1 className="episodes__title">Episodes</h1>
+      <PageTitle>Episodes</PageTitle>
 
       <LoadState loading={seasons.loading} error={seasons.error} onRetry={seasons.reload} loadingText="Loading episodes…">
         {seasons.data && seasons.data.length > 0 ? (

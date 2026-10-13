@@ -1,0 +1,21 @@
+.scenes {
+  padding-top: var(--space-6);
+}
+
+.scenes__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 32rem), 1fr));
+  gap: var(--space-5) var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.scenes__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1a1917;
+}
+
+.scenes__description {
+  margin-top: var(--space-3);
+  max-width: 60ch;
+}
