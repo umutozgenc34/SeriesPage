@@ -1,0 +1,16 @@
+.load-state {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  color: var(--color-stone);
+  max-width: 60ch;
+}
+
+.load-state--error {
+  color: var(--color-danger);
+}
+
+.load-state--error .button {
+  color: var(--color-bone);
+}

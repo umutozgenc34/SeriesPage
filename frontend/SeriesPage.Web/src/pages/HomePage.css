@@ -1,0 +1,116 @@
+.home__hero {
+  padding-block: var(--space-6);
+  background: linear-gradient(var(--color-hairline), var(--color-hairline)) center bottom / calc(100% - 2 * var(--gutter)) 1px no-repeat;
+}
+
+.home__title {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.18em;
+  font-size: clamp(3.5rem, 18vw, 15rem);
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.home__title-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.home__title-word > span {
+  display: inline-block;
+  animation: home-title-rise 900ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+@keyframes home-title-rise {
+  from {
+    transform: translateY(105%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.home__meta {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 64rem) {
+  .home__meta {
+    grid-template-columns: 1fr minmax(0, 36rem);
+    align-items: start;
+  }
+
+  .home__intro {
+    grid-column: 2;
+  }
+}
+
+.home__facts {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-stone);
+}
+
+.home__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  max-width: 38rem;
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+.home__seasons {
+  padding-block: var(--space-6);
+}
+
+.home__season-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin-top: var(--space-5);
+  border-top: 1px solid var(--color-hairline);
+  border-left: 1px solid var(--color-hairline);
+}
+
+.home__season {
+  display: grid;
+  align-content: space-between;
+  min-height: 15rem;
+  padding: var(--space-3);
+  border-right: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+  text-decoration: none;
+}
+
+.home__season-number {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 9rem);
+  font-weight: 800;
+  line-height: 0.8;
+}
+
+.home__season-count {
+  color: var(--color-stone);
+}
+
+.home__season:hover {
+  background: var(--color-pad);
+  color: var(--color-pad-ink);
+}
+
+.home__season:hover .home__season-count {
+  color: var(--color-pad-ink);
+}
+
+.home__empty {
+  margin-top: var(--space-4);
+  color: var(--color-stone);
+}

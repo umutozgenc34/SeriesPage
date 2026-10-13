@@ -1,0 +1,105 @@
+.episodes {
+  padding-top: var(--space-6);
+}
+
+.episodes__title {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.85;
+}
+
+.episodes__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-5);
+}
+
+.episodes__filter-button {
+  min-width: 3.25rem;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-hairline);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-stone);
+  cursor: pointer;
+}
+
+.episodes__filter-button:hover {
+  color: var(--color-bone);
+  border-color: var(--color-bone);
+}
+
+.episodes__filter-button[aria-pressed='true'] {
+  background: var(--color-bone);
+  border-color: var(--color-bone);
+  color: var(--color-ground);
+}
+
+.episodes__season {
+  margin-top: var(--space-6);
+}
+
+.episodes__season-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-bone);
+  font-size: var(--text-xl);
+  font-weight: 800;
+}
+
+.episodes__season-title span {
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-stone);
+}
+
+.episodes__row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--color-hairline);
+  text-decoration: none;
+}
+
+.episodes__row:hover {
+  background: var(--color-lift);
+}
+
+.episodes__number {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--color-stone);
+  font-variant-numeric: tabular-nums;
+}
+
+.episodes__name {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-md), 4vw, var(--text-lg));
+  font-weight: 650;
+  line-height: 1.1;
+}
+
+.episodes__status {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+}
+
+.episodes__row:hover .episodes__status {
+  color: var(--color-bone);
+}
+
+.episodes__none {
+  padding-block: var(--space-4);
+  color: var(--color-stone);
+}
