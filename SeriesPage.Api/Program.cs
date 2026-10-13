@@ -4,6 +4,8 @@ using SeriesPage.Service.Extensions;
 using Shared.Extensions;
 using Shared.Middlewares;
 
+DotNetEnv.Env.TraversePath().Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 
