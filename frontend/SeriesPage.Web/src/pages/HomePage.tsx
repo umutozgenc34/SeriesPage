@@ -9,9 +9,11 @@ import './HomePage.css'
 export function HomePage() {
   const seasons = useApi(seriesApi.seasonsWithEpisodes)
   const summaries = useApi(seriesApi.summaries)
+  const reviews = useApi(seriesApi.reviews)
 
   const episodeCount = seasons.data?.reduce((total, season) => total + season.episodes.length, 0) ?? 0
   const introduction = summaries.data?.[0]?.text
+  const latestReview = reviews.data && reviews.data.length > 0 ? reviews.data.reduce((a, b) => (b.id > a.id ? b : a)) : null
 
   return (
     <div className="home">
@@ -66,6 +68,30 @@ export function HomePage() {
           )}
         </LoadState>
       </section>
+
+      {!reviews.loading && !reviews.error && (
+        <section className="page home__forum" aria-labelledby="forum-title">
+          <h2 id="forum-title" className="section-title">
+            From the forum
+          </h2>
+          <div className="legal-pad home__note">
+            {latestReview ? (
+              <>
+                <p className="home__note-title">{latestReview.title}</p>
+                <p className="home__note-body">{latestReview.content}</p>
+                <p className="home__note-author">
+                  {latestReview.nickName}, {latestReview.rating}/10
+                </p>
+              </>
+            ) : (
+              <p className="home__note-body">Nobody has written a review yet.</p>
+            )}
+            <Link to="/forum" className="home__note-link">
+              {latestReview ? 'Read all reviews' : 'Write the first review'}
+            </Link>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

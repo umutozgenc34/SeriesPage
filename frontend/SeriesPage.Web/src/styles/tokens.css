@@ -31,6 +31,13 @@
   --page-max: 80rem;
   --gutter: clamp(1rem, 4vw, 3rem);
   --pad-line: 2rem;
+  --pad-margin: 4rem;
 
   color-scheme: dark;
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --pad-margin: 2.25rem;
+  }
 }

@@ -9,5 +9,6 @@ export const navigation: NavigationItem[] = [
   { to: '/cast', label: 'Cast' },
   { to: '/scenes', label: 'Scenes' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/awards', label: 'Awards' }
+  { to: '/awards', label: 'Awards' },
+  { to: '/forum', label: 'Forum' }
 ]

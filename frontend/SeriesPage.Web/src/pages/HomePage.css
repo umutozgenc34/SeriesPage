@@ -114,3 +114,41 @@
   margin-top: var(--space-4);
   color: var(--color-stone);
 }
+
+.home__forum {
+  padding-bottom: var(--space-6);
+}
+
+.home__note {
+  max-width: 40rem;
+  margin-top: var(--space-5);
+}
+
+.home__note-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+}
+
+.home__note-body {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  max-width: 60ch;
+}
+
+.home__note-author {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.home__note-link {
+  display: inline-block;
+  margin-top: var(--pad-line);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}

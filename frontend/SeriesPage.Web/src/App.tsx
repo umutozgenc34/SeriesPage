@@ -4,6 +4,7 @@ import { AwardsPage } from './pages/AwardsPage'
 import { CastPage } from './pages/CastPage'
 import { EpisodeDetailPage } from './pages/EpisodeDetailPage'
 import { EpisodesPage } from './pages/EpisodesPage'
+import { ForumPage } from './pages/ForumPage'
 import { GalleryPage } from './pages/GalleryPage'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
@@ -22,6 +23,7 @@ export function App() {
         <Route path="scenes" element={<ScenesPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="awards" element={<AwardsPage />} />
+        <Route path="forum" element={<ForumPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
